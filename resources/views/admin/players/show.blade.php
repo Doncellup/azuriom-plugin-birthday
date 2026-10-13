@@ -59,7 +59,7 @@
                             <div class="col-5">
                                 <select class="form-select @error('month') is-invalid @enderror" name="month" aria-label="{{ trans('birthday::messages.save.month') }}" required>
                                     @for($m = 1; $m <= 12; $m++)
-                                        <option value="{{ $m }}" @selected((int) old('month', $birthday?->month) === $m)>{{ trans('birthday::messages.months.'.$m) }}</option>
+                                        <option value="{{ $m }}" @selected((int) old('month', $birthday?->month) === $m)>{{ \Azuriom\Plugin\Birthday\Services\BirthdayManager::monthName($m) }}</option>
                                     @endfor
                                 </select>
                             </div>

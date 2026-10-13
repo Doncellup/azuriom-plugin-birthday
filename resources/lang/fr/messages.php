@@ -50,38 +50,6 @@ return [
         'grace' => '{0} À récupérer le jour même.|{1} À récupérer le jour même ou le lendemain.|[2,*] À récupérer le jour même ou dans les :count jours qui suivent.',
     ],
 
-    'date' => ':day :month',
-
-    'months' => [
-        1 => 'janvier',
-        2 => 'février',
-        3 => 'mars',
-        4 => 'avril',
-        5 => 'mai',
-        6 => 'juin',
-        7 => 'juillet',
-        8 => 'août',
-        9 => 'septembre',
-        10 => 'octobre',
-        11 => 'novembre',
-        12 => 'décembre',
-    ],
-
-    'months_short' => [
-        1 => 'janv.',
-        2 => 'févr.',
-        3 => 'mars',
-        4 => 'avr.',
-        5 => 'mai',
-        6 => 'juin',
-        7 => 'juil.',
-        8 => 'août',
-        9 => 'sept.',
-        10 => 'oct.',
-        11 => 'nov.',
-        12 => 'déc.',
-    ],
-
     'saved' => 'Votre anniversaire est enregistré !',
     'claimed' => 'Joyeux anniversaire ! Vous avez reçu : :reward.',
 

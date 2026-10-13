@@ -52,7 +52,7 @@
                                         <select class="form-select @error('month') is-invalid @enderror" id="monthSelect" name="month" required>
                                             <option value="" disabled @selected(! old('month'))>—</option>
                                             @for($m = 1; $m <= 12; $m++)
-                                                <option value="{{ $m }}" @selected((int) old('month') === $m)>{{ trans('birthday::messages.months.'.$m) }}</option>
+                                                <option value="{{ $m }}" @selected((int) old('month') === $m)>{{ \Azuriom\Plugin\Birthday\Services\BirthdayManager::monthName($m) }}</option>
                                             @endfor
                                         </select>
                                         @error('month')
@@ -83,7 +83,7 @@
                         @else
                             <div class="d-flex align-items-center gap-3 mb-3">
                                 <div class="bd-date">
-                                    <span class="bd-date-month">{{ trans('birthday::messages.months_short.'.$birthday->month) }}</span>
+                                    <span class="bd-date-month">{{ \Azuriom\Plugin\Birthday\Services\BirthdayManager::monthName($birthday->month, true) }}</span>
                                     <span class="bd-date-day">{{ $birthday->day }}</span>
                                 </div>
                                 <div>

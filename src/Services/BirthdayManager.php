@@ -167,13 +167,30 @@ class BirthdayManager
     }
 
     /**
-     * "14 March" or "March 14", depending on the language.
+     * The name of a month in the current language, translated by Carbon.
+     */
+    public static function monthName(int $month, bool $short = false): string
+    {
+        return Carbon::create(2000, $month, 1)
+            ->locale(app()->getLocale())
+            ->isoFormat($short ? 'MMM' : 'MMMM');
+    }
+
+    /**
+     * "14 March" or "March 14", depending on the language (order and month name come from Carbon).
      */
     public static function formatDay(int $day, int $month): string
     {
-        return trans('birthday::messages.date', [
-            'day' => $day,
-            'month' => trans('birthday::messages.months.'.$month),
-        ]);
+        $date = Carbon::create(2000, $month, $day)->locale(app()->getLocale());
+
+        // Carbon knows the long date format of each language (for example "D MMMM YYYY"): the year is removed from it.
+        $format = (string) $date->getTranslationMessage('formats.LL');
+        $format = trim((string) preg_replace('/(^Y{1,4}[^\\p{L}\\p{N}]*\\p{L}?|[\\s,.\\/-]*(?:\\[[^\\]]*\\]\\s*)?Y{1,4}(?:\\s*\\p{L}+\\.?)?$)/u', '', $format));
+
+        if (! str_contains($format, 'D') || ! str_contains($format, 'M')) {
+            $format = 'D MMMM';
+        }
+
+        return $date->isoFormat($format);
     }
 }
