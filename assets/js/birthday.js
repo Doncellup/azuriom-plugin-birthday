@@ -2,6 +2,16 @@
 window.birthday = (function () {
     'use strict';
 
+    // The confetti uses the colors of the Bootstrap theme, with a fallback if a variable is missing.
+    function themeColors() {
+        var styles = window.getComputedStyle(document.documentElement);
+        var fallback = {primary: '#0d6efd', success: '#198754', warning: '#ffc107', danger: '#dc3545', info: '#0dcaf0'};
+
+        return Object.keys(fallback).map(function (name) {
+            return styles.getPropertyValue('--bs-' + name).trim() || fallback[name];
+        });
+    }
+
     // Small confetti burst, drawn on a temporary canvas above the page.
     function confetti() {
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -10,7 +20,7 @@ window.birthday = (function () {
 
         var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
-        var colors = ['#e8590c', '#d4a017', '#0d6efd', '#198754', '#dc3545', '#6f42c1', '#20c997'];
+        var colors = themeColors();
         var pieces = [];
         var start = null;
         var duration = 2800;

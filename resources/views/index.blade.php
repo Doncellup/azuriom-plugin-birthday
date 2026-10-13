@@ -2,10 +2,6 @@
 
 @section('title', trans('birthday::messages.title'))
 
-@push('styles')
-    <link href="{{ plugin_asset('birthday', 'css/style.css?v=1.0.0') }}" rel="stylesheet">
-@endpush
-
 @section('content')
     <h1>{{ trans('birthday::messages.title') }}</h1>
 
@@ -15,7 +11,7 @@
 
     <div class="row">
         <div class="col-lg-7 mb-4">
-            <div class="card h-100 bd-card">
+            <div class="card h-100">
                 <div class="card-body">
                     @guest
                         <div class="alert alert-info mb-0" role="alert">
@@ -26,7 +22,7 @@
                         @php($state = $status['state'])
 
                         @if($state === 'none')
-                            <h2 class="h4"><i class="bi bi-calendar-heart bd-accent"></i> {{ trans('birthday::messages.save.title') }}</h2>
+                            <h2 class="h4"><i class="bi bi-calendar-heart text-primary"></i> {{ trans('birthday::messages.save.title') }}</h2>
                             <p>{{ trans('birthday::messages.save.info') }}</p>
 
                             <form action="{{ route('birthday.store') }}" method="POST"
@@ -82,9 +78,9 @@
                             @endif
                         @else
                             <div class="d-flex align-items-center gap-3 mb-3">
-                                <div class="bd-date">
-                                    <span class="bd-date-month">{{ \Azuriom\Plugin\Birthday\Services\BirthdayManager::monthName($birthday->month, true) }}</span>
-                                    <span class="bd-date-day">{{ $birthday->day }}</span>
+                                <div class="d-flex flex-column align-items-center border border-2 border-primary rounded bg-primary-subtle px-3 py-2 lh-1">
+                                    <span class="small fw-bold text-uppercase text-primary">{{ \Azuriom\Plugin\Birthday\Services\BirthdayManager::monthName($birthday->month, true) }}</span>
+                                    <span class="fs-3 fw-bold">{{ $birthday->day }}</span>
                                 </div>
                                 <div>
                                     <div class="text-muted small">{{ trans('birthday::messages.your_birthday') }}</div>
@@ -93,15 +89,15 @@
                             </div>
 
                             @if($state === 'claimable')
-                                <div class="bd-hero text-center">
-                                    <div class="bd-hero-icon"><i class="bi bi-cake2"></i></div>
+                                <div class="text-center border border-primary rounded bg-primary-subtle p-4">
+                                    <div class="display-4 text-primary"><i class="bi bi-cake2"></i></div>
                                     <h2 class="h3">{{ $status['date']->isToday() ? trans('birthday::messages.happy_birthday', ['name' => auth()->user()->name]) : trans('birthday::messages.gift_waiting') }}</h2>
                                     <p class="mb-3">
                                         {{ trans('birthday::messages.claim_until', ['date' => format_date($status['deadline'])]) }}
                                     </p>
                                     <form action="{{ route('birthday.claim') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-lg bd-btn">
+                                        <button type="submit" class="btn btn-primary btn-lg">
                                             <i class="bi bi-gift"></i> {{ trans('birthday::messages.claim', ['reward' => $rewardName]) }}
                                         </button>
                                     </form>
@@ -125,7 +121,7 @@
                                 </p>
                             @else
                                 <p class="fs-5 mb-2">
-                                    <i class="bi bi-hourglass-split bd-accent"></i>
+                                    <i class="bi bi-hourglass-split text-primary"></i>
                                     {{ trans_choice('birthday::messages.in_days', $status['days'], ['count' => $status['days'], 'date' => format_date($status['date'])]) }}
                                 </p>
 
@@ -155,12 +151,12 @@
                     <li class="list-group-item fw-bold">{{ $rewardName }}</li>
                     @if($rewardMoney > 0)
                         <li class="list-group-item">
-                            <i class="bi bi-coin bd-accent"></i> {{ trans('birthday::messages.reward.money', ['money' => format_money($rewardMoney)]) }}
+                            <i class="bi bi-coin text-primary"></i> {{ trans('birthday::messages.reward.money', ['money' => format_money($rewardMoney)]) }}
                         </li>
                     @endif
                     @if($rewardHasCommands)
                         <li class="list-group-item">
-                            <i class="bi bi-controller bd-accent"></i> {{ trans('birthday::messages.reward.ingame') }}
+                            <i class="bi bi-controller text-primary"></i> {{ trans('birthday::messages.reward.ingame') }}
                         </li>
                     @endif
                     @if($rewardMoney <= 0 && ! $rewardHasCommands)
