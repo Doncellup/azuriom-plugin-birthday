@@ -1,0 +1,63 @@
+/* Birthday Rewards - uses the Bootstrap variables so every theme keeps its own colors */
+:root {
+    --bd-accent: #e8590c;
+    --bd-accent-soft: rgba(232, 89, 12, .12);
+}
+
+.bd-accent {
+    color: var(--bd-accent);
+}
+
+.bd-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    flex-shrink: 0;
+    border-radius: var(--bs-border-radius-lg, .5rem);
+    border: 2px solid var(--bd-accent);
+    background-color: var(--bd-accent-soft);
+    line-height: 1.05;
+}
+
+.bd-date-month {
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--bd-accent);
+}
+
+.bd-date-day {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.bd-hero {
+    border-radius: var(--bs-border-radius-lg, .5rem);
+    background-color: var(--bd-accent-soft);
+    border: 1px solid var(--bd-accent);
+    padding: 1.5rem 1rem;
+}
+
+.bd-hero-icon {
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--bd-accent);
+}
+
+.bd-btn {
+    background-color: var(--bd-accent);
+    border-color: var(--bd-accent);
+    color: #fff;
+    font-weight: 600;
+}
+
+.bd-btn:hover,
+.bd-btn:focus {
+    filter: brightness(1.08);
+    background-color: var(--bd-accent);
+    color: #fff;
+}
