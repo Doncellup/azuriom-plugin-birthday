@@ -19,3 +19,7 @@ Author: **Doncellup** · Requires Azuriom 1.2+ (PHP 8.2+) · Languages: English,
 
 Gift commands support `{player}` (replaced by Azuriom) and `{reward}` (the name of the gift).
 Choose the servers where they run. Enable "The player must be online" to deliver the commands only when the player is connected (AzLink).
+
+## Support
+
+A question, a bug or an idea? Join the Discord: https://discord.gg/gF8EUnJsQ6
